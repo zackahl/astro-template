@@ -1,0 +1,126 @@
+---
+import { AppConfig } from '../utils/config';
+import Nav from './nav.astro';
+import ThemeSwitch from './theme-switch.astro';
+
+interface Header {
+  variant: "left" | "center" | "right";
+  sticky?: boolean;
+}
+
+const { variant, sticky } = Astro.props as Header;
+---
+
+{
+  variant === "left" && (
+    <div
+      class={
+        "navbar py-0 bg-base-100 border-b-2 border-base-200" +
+        (sticky ? " sticky top-0 z-50" : "")
+      }
+    >
+      <div class="hidden lg:block navbar-start">
+        <Nav variant="top" size="small" icons="persist"/>
+      </div>
+      <div class="lg:navbar-center lg:flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          class="w-10 h-10 min-w-10 text-white p-2 bg-primary rounded-full"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <a href="/" class="sm:text-sm md:text-xl cursor-pointer pl-3 from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent leading-tight font-bold font-display">
+          {AppConfig.site.name}
+        </a>
+      </div>
+      <div class="navbar-end flex-auto">
+        <div transition:persist>
+          <ThemeSwitch />
+        </div>
+        <Nav variant="drawer"/>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === "center" && (
+    <div
+      class={
+        "navbar py-0 bg-base-100 border-b-2 border-base-200" +
+        (sticky ? " sticky top-0 z-50" : "")
+      }
+    >
+      <div class="navbar-start">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          class="w-10 h-10 min-w-10 text-white p-2 bg-primary rounded-full"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <a href="/" class="sm:text-sm md:text-xl cursor-pointer pl-3 from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent leading-tight font-bold font-display">
+          {AppConfig.site.name}
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <Nav variant="top" size="small" icons="hover"/>
+      </div>
+      <div class="navbar-end">
+        <div transition:persist>
+          <ThemeSwitch />
+        </div>
+        <Nav variant="drawer"/>
+      </div>
+    </div>
+  )
+}
+
+{
+  variant === "right" && (
+    <div
+      class={
+        "navbar py-0 bg-base-100 border-b-2 border-base-200" +
+        (sticky ? " sticky top-0 z-50" : "")
+      }
+    >
+      <div class="navbar-start flex-row-reverse justify-end">
+        <div transition:persist class="px-3">
+          <ThemeSwitch />
+        </div>
+        <Nav variant="drawer"/>
+      </div>
+      <div class="navbar-end lg:navbar-center flex justify-end">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          class="w-10 h-10 min-w-10 text-white p-2 bg-primary rounded-full"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <a href="/" class="sm:text-sm md:text-xl cursor-pointer pl-3 from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent leading-tight font-bold font-display">
+          {AppConfig.site.name}
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <Nav variant="top" size="small" icons="hover"/>
+      </div>
+    </div>
+  )
+}

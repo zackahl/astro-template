@@ -1,0 +1,430 @@
+---
+import Hero from "../components/hero.astro";
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import HistoryImage from "../assets/images/about-history.svg";
+import TeamMember1Image from "../assets/images/about-team-1.svg";
+import TeamMember2Image from "../assets/images/about-team-2.svg";
+import TeamMember3Image from "../assets/images/about-team-3.svg";
+import TeamMember4Image from "../assets/images/about-team-4.svg";
+---
+
+<Layout title="About us" description="We are a small passionate team.">
+  <main>
+    <Hero
+      variant="auto"
+      title="About Us"
+      description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+    />
+
+    <!-- History -->
+    <section id="history" class="body-font">
+      <div
+        class="container mx-auto flex flex-wrap px-5 py-24 md:flex-row flex-col items-center w-4/5"
+      >
+        <div class="w-full lg:w-1/2 mb-10">
+          <Image
+            alt="team"
+            class="object-cover object-center"
+            src={HistoryImage}
+            width={700}
+            height={700}
+            loading={"eager"}
+          />
+        </div>
+        <div
+          class="lg:flex-grow w-full lg:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center"
+        >
+          <h1 class="sm:text-4xl text-3xl mb-8 font-medium">Our History</h1>
+          <p class="mb-8 leading-relaxed">
+            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
+            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
+            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
+            hexagon try-hard chambray.
+          </p>
+          <p class="mb-8 leading-relaxed">
+            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
+            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
+            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
+            hexagon try-hard chambray.
+          </p>
+          <p class="mb-8 leading-relaxed">
+            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
+            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
+            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
+            hexagon try-hard chambray.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="hero body-font bg-base-200">
+      <div class="hero-content block container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20 xl:mb-0">
+          <h2 class="sm:text-3xl text-2xl font-medium mb-4">Our Team</h2>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+            gentrify, subway tile poke farm-to-table. Franzen you probably
+            haven't heard of them.
+          </p>
+        </div>
+        <div class="flex mt-6 mb-12 justify-center">
+          <div class="w-16 h-1 rounded-full bg-primary inline-flex"></div>
+        </div>
+        <div class="flex flex-wrap m-4">
+          <div class="p-4 lg:w-1/2">
+            <div
+              class="group h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left"
+            >
+              <Image
+                alt="team"
+                class="flex-shrink-0 w-48 h-48 object-cover object-center sm:mb-0 mb-4 rounded-full transition-all group-hover:scale-110"
+                src={TeamMember1Image}
+                width={200}
+                height={200}
+              />
+              <div class="flex-grow sm:pl-8">
+                <h2 class="font-medium text-lg">Holden Caulfield</h2>
+                <h3 class="text-primary mb-3">UI Developer</h3>
+                <p class="mb-4">
+                  Creative powerhouse with an eye for design. Holden brings
+                  innovation and flair to every project, ensuring visually
+                  stunning results that captivate audiences and elevate brands
+                  to new heights.
+                </p>
+                <span class="inline-flex">
+                  <a href="/" aria-label="facebook">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="twitter" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="message" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+                      ></path>
+                    </svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/2">
+            <div
+              class="group h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left"
+            >
+              <Image
+                alt="team"
+                class="flex-shrink-0 w-48 h-48 object-cover object-center sm:mb-0 mb-4 rounded-full transition-all group-hover:scale-110"
+                src={TeamMember2Image}
+                width={200}
+                height={200}
+              />
+              <div class="flex-grow sm:pl-8">
+                <h2 class="font-medium text-lg">Rose Kamu</h2>
+                <h3 class="text-primary mb-3">Designer</h3>
+                <p class="mb-4">
+                  Tech guru and innovation enthusiast. Rose leads the charge in
+                  exploring cutting-edge technologies and trends. With a passion
+                  for pushing boundaries, he develops solutions that
+                  revolutionize industries and drive growth.
+                </p>
+                <span class="inline-flex">
+                  <a href="/" aria-label="facebook">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="twitter" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="message" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+                      ></path>
+                    </svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/2">
+            <div
+              class="group h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left"
+            >
+              <Image
+                alt="team"
+                class="flex-shrink-0 w-48 h-48 object-cover object-center sm:mb-0 mb-4 rounded-full transition-all group-hover:scale-110"
+                src={TeamMember3Image}
+                width={200}
+                height={200}
+              />
+              <div class="flex-grow sm:pl-8">
+                <h2 class="font-medium text-lg">Atticus Finch</h2>
+                <h3 class="text-primary mb-3">Data Analyst</h3>
+                <p class="mb-4">
+                  Strategic thinker and problem solver. Atticus's analytical
+                  prowess and forward-thinking approach drive success. With a
+                  focus on long-term goals, he crafts solutions that deliver
+                  tangible results and exceed expectations.
+                </p>
+                <span class="inline-flex">
+                  <a href="/" aria-label="facebook">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="twitter" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="message" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+                      ></path>
+                    </svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/2">
+            <div
+              class="group h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left"
+            >
+              <Image
+                alt="team"
+                class="flex-shrink-0 w-48 h-48 object-cover object-center sm:mb-0 mb-4 rounded-full transition-all group-hover:scale-110"
+                src={TeamMember4Image}
+                width={200}
+                height={200}
+              />
+              <div class="flex-grow sm:pl-8">
+                <h2 class="font-medium text-lg">Sofia Letham</h2>
+                <h3 class="text-primary mb-3">Social Media</h3>
+                <p class="mb-4">
+                  Wordsmith extraordinaire and master communicator. Sofia crafts
+                  compelling narratives that resonate with audiences, driving
+                  engagement and fostering meaningful connections. Her
+                  storytelling prowess elevates brands and amplifies their
+                  message.
+                </p>
+                <span class="inline-flex">
+                  <a href="/" aria-label="facebook">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="twitter" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="/" aria-label="message" class="ml-2">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+                      ></path>
+                    </svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faqs" class="body-font bg-base-300 h-auto">
+      <div class="container px-5 py-24 mx-auto">
+        <h2 class="sm:text-3xl text-2xl font-medium mb-4 text-center">
+          Frequently Asked Questions
+        </h2>
+        <div class="flex my-6 justify-center">
+          <div class="w-16 h-1 rounded-full bg-primary inline-flex"></div>
+        </div>
+        <div class="flex justify-center">
+          <div class="join join-vertical bg-base-100 lg:w-4/5">
+            <div
+              class="group collapse collapse-arrow join-item border border-base-300"
+            >
+              <input type="radio" name="my-accordion-4" checked="checked" />
+              <div
+                class="collapse-title text-xl font-medium group-hover:text-primary transition-colors"
+              >
+                Question 1
+              </div>
+              <div class="collapse-content">
+                <p>
+                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                  assumenda excepturi exercitationem quasi. In deleniti eaque
+                  aut repudiandae et a id nisi.
+                </p>
+              </div>
+            </div>
+            <div
+              class="group collapse collapse-arrow join-item border border-base-300"
+            >
+              <input type="radio" name="my-accordion-4" />
+              <div
+                class="collapse-title text-xl font-medium group-hover:text-primary transition-colors"
+              >
+                Question 2
+              </div>
+              <div class="collapse-content">
+                <p>
+                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                  assumenda excepturi exercitationem quasi. In deleniti eaque
+                  aut repudiandae et a id nisi.
+                </p>
+              </div>
+            </div>
+            <div
+              class="group collapse collapse-arrow join-item border border-base-300"
+            >
+              <input type="radio" name="my-accordion-4" />
+              <div
+                class="collapse-title text-xl font-medium group-hover:text-primary transition-colors"
+              >
+                Question 3
+              </div>
+              <div class="collapse-content">
+                <p>
+                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                  assumenda excepturi exercitationem quasi. In deleniti eaque
+                  aut repudiandae et a id nisi.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style></style>

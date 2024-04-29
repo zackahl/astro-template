@@ -1,0 +1,98 @@
+---
+import { Icon } from "astro-icon/components";
+import Hero from "../../components/hero.astro";
+import Layout from "../../layouts/Layout.astro";
+import Product from "../../components/product.astro";
+import { allProductsSorted } from "../../utils/products";
+---
+
+<Layout
+  title="Products"
+  description="View our variety of high quality products for sale."
+>
+  <main>
+    <Hero
+      variant="auto"
+      title="Products"
+      description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+    />
+    <section class="body-font bg-base-100">
+      <div class="container px-5 py-24 w-full mx-auto">
+        <div class="flex justify-center pb-12">
+          <div class="mr-4 my-auto">
+            <h2 class="sm:text-3xl text-2xlfont-medium">Our Products</h2>
+          </div>
+          <div class="dropdown dropdown-hover">
+            <div
+              role="button"
+              class="btn btn-primary btn-outline m-1"
+            >
+              <span class="hidden sm:block">Sort by </span><Icon
+                name="mdi:chevron-down"
+                size={30}
+              />
+            </div>
+            <ul
+              class="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-52"
+            >
+              <li><span id="name" class="sort-option">Name</span></li>
+              <li>
+                <span id="price-asc" class="sort-option">Price (low - high)</span>
+              </li>
+              <li>
+                <span id="price-desc" class="sort-option">Price (high - low)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="products" class="flex flex-wrap gap-6 justify-center">
+          {allProductsSorted.map((product) => <Product product={product} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script lang="js" is:inline>
+  // Sort by title, price or id
+  function sort(id) {
+    const elements = [...document.querySelectorAll(".product")];
+
+    [...document.getElementsByClassName("sort-option")].map((so) =>
+      so.classList.remove("font-bold")
+    );
+    document.getElementById(id).classList.add("font-bold");
+
+    elements.sort(function (a, b) {
+      if (id === "price-asc") {
+        return a.dataset.price.valueOf() - b.dataset.price.valueOf();
+      } else if (id === "price-desc") {
+        return b.dataset.price.valueOf() - a.dataset.price.valueOf();
+      } else if (id === "name") {
+        if (a.dataset.title < b.dataset.title) {
+          return -1;
+        }
+        if (a.dataset.title > b.dataset.title) {
+          return 1;
+        }
+        return 0;
+      } else {
+        return b.dataset.id.valueOf() - a.dataset.id.valueOf();
+      }
+    });
+
+    const parentElement = elements[0].parentNode;
+
+    elements.forEach(element => parentElement.appendChild(element));
+  }
+
+  function init() {
+    document.querySelectorAll(".sort-option").forEach((element) => {
+      element.addEventListener("click", () => sort(element.id));
+    });
+  }
+
+  init();
+
+  document.addEventListener("astro:after-swap", init);
+</script>

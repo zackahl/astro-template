@@ -1,0 +1,28 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import { allProductsSorted, numProducts } from '../../utils/products';
+
+export async function getStaticPaths() {
+  return allProductsSorted.map((product, i) => ({
+    params: { slug: product.slug },
+    props: {
+      product,
+      prevProduct: // Previous product
+        i + 1 === numProducts // If the current product is the oldest
+          ? null
+          : allProductsSorted[i + 1],
+      nextProduct: // Next product
+        i === 0 // If the current product is the newest
+          ? null
+          : allProductsSorted[i - 1],
+    },
+  }));
+}
+
+const { product, prevProduct, nextProduct } = Astro.props;
+const { Content } = await product.render();
+---
+
+<ProductLayout prevProduct={prevProduct} frontmatter={product.data} nextProduct={nextProduct}>
+  <Content />
+</ProductLayout>

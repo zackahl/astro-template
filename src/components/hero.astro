@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+
+interface Hero {
+  variant: "screen" | "auto"
+  title: string
+  caption?: string
+  subtitle?: string
+  description?: string
+  cta?: {
+    url: string;
+    text: string;
+  }
+  image?: {
+    meta: ImageMetadata
+    alt: string
+    classes: string
+    width: number
+    height: number
+  }
+  imageAlign?: "start" | "end"
+  textAlign?: "left" | "center" | "right"
+  classes?: string
+}
+
+const { variant, title, caption, subtitle, description, cta, image, imageAlign, textAlign, classes } = Astro.props as Hero;
+---
+
+<!-- Screen -->
+{variant === "screen" &&
+<section class={"hero min-h-screen pb-10 " + classes}>
+    <div class={"hero-content"}>
+      <div class={`flex flex-wrap text-center md:text-${textAlign || 'left'} ${imageAlign === 'start' ? 'flex-row-reverse' : ''}`}>
+          <div class="md:w-full lg:w-1/2 mb-10 lg:px-10">
+              {caption && <span class="uppercase">{caption}</span>}
+              <h1 class="text-8xl font-bold font-display from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent leading-tight blur-3xl absolute opacity-75" style="width: min-content;">{title}</h1>
+              <h1 class="text-8xl font-bold font-display from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent leading-tight">{title}</h1>
+              {subtitle && <h2 class="text-3xl mt-5 font-medium">{subtitle}</h2>}
+              <p class="py-6">{description}</p>
+              {cta && <a href={cta.url} class="btn btn-primary">{cta.text}</a>}
+          </div>
+          {image && <div class="md:w-full lg:w-1/2 m-auto">
+              <div class="rounded-lg h-2/3 overflow-hidden animate-fade-down animate-delay-500">
+                  <Image
+                    src={image.meta}
+                    alt={image.alt}
+                    class={image.classes}
+                    width={image.width}
+                    height={image.height}
+                    loading={"eager"}
+                  />
+              </div>
+          </div>}
+      </div>
+    </div>
+</section>
+}
+
+<!-- Auto -->
+{variant === "auto" &&
+<section class={"hero py-16 bg-neutral text-neutral-content " + classes}>
+    <div class={"hero-content " + (textAlign ? "text-" + textAlign : "text-center")}>
+      <div class="max-w-md animate-fade-up">
+        {caption && <span class="uppercase">{caption}</span>}
+        <h1 class="text-6xl font-bold font-display">{title}</h1>
+        {subtitle && <h2 class="text-3xl font-medium">{subtitle}</h2>}
+        <p class="py-6">{description}</p>
+        {cta && <a href={cta.url} class="btn btn-primary">{cta.text}</a>}
+      </div>
+    </div>
+</section>
+}

@@ -1,0 +1,42 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Product from "../../../components/product.astro";
+import Hero from "../../../components/hero.astro";
+import { allProductsSorted } from "../../../utils/products";
+
+export async function getStaticPaths() {
+  const uniqueCategories = [...new Set(allProductsSorted.map((product) => product.data.category).flat())];
+
+  return uniqueCategories.map((category) => {
+    const filteredProducts = allProductsSorted.filter((product) =>
+      product.data.category.includes(category)
+    );
+    return {
+      params: { category },
+      props: { products: filteredProducts },
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { products } = Astro.props;
+---
+
+<Layout title={category} description={`All blogs products under the category: ${category}`}>
+  <Hero
+    variant="auto"
+    title={`#${category}`}
+    caption="category"
+  />
+
+  <section class="hero bg-base-200">
+		<div class="hero-content w-4/5">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -mx-4 -my-8">
+            {products.map((product, p_ix) =>
+              <Product index={p_ix} product={product}/>
+            )}
+          </div>
+        </div>
+	</section>
+</BaseLayout>

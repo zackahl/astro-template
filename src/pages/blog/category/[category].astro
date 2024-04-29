@@ -1,0 +1,42 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Post from "../../../components/post.astro";
+import Hero from "../../../components/hero.astro";
+import { allPostsSorted } from "../../../utils/posts";
+
+export async function getStaticPaths() {
+  const uniqueCategories = [...new Set(allPostsSorted.map((post) => post.data.category).flat())];
+
+  return uniqueCategories.map((category) => {
+    const filteredPosts = allPostsSorted.filter((post) =>
+      post.data.category.includes(category)
+    );
+    return {
+      params: { category },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={category} description={`All blogs posts under the category: ${category}`}>
+  <Hero
+    variant="auto"
+    title={`#${category}`}
+    caption="category"
+  />
+
+  <section class="hero bg-base-200">
+		<div class="hero-content w-4/5">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -mx-4 -my-8">
+            {posts.map((post, p_ix) =>
+              <Post index={p_ix} post={post}/>
+            )}
+          </div>
+        </div>
+	</section>
+</BaseLayout>

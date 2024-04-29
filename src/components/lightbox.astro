@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import { type Lightbox } from "../types/common";
+import { getFormattedDate } from "../utils/dates";
+
+const { id, title, alt, caption, src, width, height, date, eager } = Astro.props as Lightbox;
+---
+
+<div>
+  <Image
+    class="thumbnail rounded-lg w-full object-cover h-full object-center block transition-all duration-300 cursor-pointer hover:shadow-xl hover:scale-105 dark:shadow-gray-800"
+    alt={alt}
+    src={src}
+    width={width}
+    height={height}
+    decoding="async"
+    loading={eager ? "eager" : "lazy"}
+    id={"thumbnail-" + id}
+  />
+  <dialog id={"lightbox-" + id} class="modal backdrop-blur-md backdrop-brightness-50 text-white overflow-auto">
+    <div class="max-w-5xl h-4/5">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 fill-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                <title>close</title>
+                <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+            </svg>
+        </button>
+      </form>
+      <div class="flex flex-col justify-around h-full text-center">
+        <h3 class="font-bold text-xl mb-3">{ title }</h3>
+        <Image
+          class="mx-auto mb-3"
+          alt={alt}
+          src={src}
+          width={width}
+          height={height}
+          decoding="async"
+          loading={eager ? "eager" : "lazy"}
+        />
+        {date && <div class="text-md">{ getFormattedDate(date) }</div>}
+        <div class="text-sm w-2/3 mx-auto py-4">{ caption }</div>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  function open(id:string) {
+    let lb = document.getElementById('lightbox-' + id.split('-')[1]);
+    if(lb) lb.toggleAttribute("open", true);
+  }
+  
+  function close(id:string) {
+    let lb = document.getElementById(id);
+    if(lb) lb.toggleAttribute("open", false);
+  }
+
+  function init () {
+    document.querySelectorAll(".thumbnail").forEach(element => {
+      element.addEventListener("click",  () => open(element.id));
+    });
+    document.querySelectorAll(".modal").forEach(element => {
+      element.addEventListener("click", () => close(element.id));
+    });
+  }
+
+  init()
+
+  document.addEventListener("astro:after-swap", init)
+  </script>

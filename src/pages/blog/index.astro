@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Post from "../../components/post.astro";
+import Hero from "../../components/hero.astro";
+import { allPostsSorted } from "../../utils/posts";
+---
+
+<Layout title="Blog" description="Keep up to date with the latest news and topics.">
+  <main>
+    <Hero
+      variant="auto"
+      title="Blog"
+      description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+    />
+
+    <section class="hero bg-base-100">
+      <div class="hero-content w-4/5">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -mx-4 -my-8">
+              {allPostsSorted.slice(0,4).map((post, p_ix) =>
+                <Post index={p_ix} post={post}/>
+              )}
+            </div>
+            <a href="/blog/archive">
+              <button class="flex mx-auto mt-24 btn btn-primary btn-outline">All Blog Posts</button>
+            </a>
+          </div>
+      </div>
+    </section>
+  </main>
+</Layout>

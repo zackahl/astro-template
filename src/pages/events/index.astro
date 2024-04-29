@@ -1,0 +1,29 @@
+---
+import Hero from "../../components/hero.astro";
+import Layout from "../../layouts/Layout.astro";
+import Event from "../../components/event.astro";
+import { allEventsSorted } from "../../utils/events";
+---
+
+<Layout title="Events" description="See all upcoming events and functions.">
+    <main>
+      <Hero
+        variant="auto"
+        title="Events"
+        description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+      />
+
+      <section class="hero bg-base-100">
+        <div class="hero-content w-4/5">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-wrap -mx-4 -my-8">
+                {allEventsSorted.slice(0,4).map((event, e_ix) =>
+                  <Event index={e_ix} event={event}/>
+                )}
+              </div>
+            </div>
+        </div>
+      </section>
+
+    </main>
+</Layout>

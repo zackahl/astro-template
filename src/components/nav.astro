@@ -1,0 +1,110 @@
+---
+import { Icon } from "astro-icon/components";
+import { AppConfig } from "../utils/config";
+
+interface Nav {
+  variant: "top" | "drawer";
+  size: "small" | "normal";
+  icons: "persist" | "hover" | "hidden"
+}
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+
+const { variant, size, icons } = Astro.props as Nav;
+---
+
+{
+  variant === "top" && (
+    <div>
+      {AppConfig.pages.map((page) => {
+        if (!page.children) {
+          return (
+            <a
+              href={`/${page.link}`}
+              class={`group btn btn-ghost m-1 hover:bg-base-200 ${size === "small" ? "min-w-20" : "min-w-32"} ${currentPath === page.link ? "bg-base-300" : ""}`}
+            >
+              {icons != "hidden" &&
+                <Icon
+                  name={page.icon}
+                  class={`text-primary opacity-0 group-hover:opacity-100 transition-all ${currentPath === page.link || icons === "persist" ? "opacity-100" : ""}`}
+                />
+              }
+              {page.display}
+            </a>
+          );
+        } else {
+          return (
+            <div class="dropdown dropdown-hover">
+              <a
+                href={`/${page.link}`}
+                role="button"
+                class={`group btn btn-ghost m-1 hover:bg-base-300 ${size === "small" ? "min-w-20" : "min-w-32"} ${currentPath === page.link ? "bg-base-300" : ""}`}
+              >
+                {icons != "hidden" &&
+                  <Icon
+                    name={page.icon}
+                    class={`text-primary opacity-0 group-hover:opacity-100 transition-all ${currentPath === page.link || icons === "persist" ? "opacity-100" : ""}`}
+                  />
+                }
+                {page.display}
+              </a>
+              <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52 hover:bg-base-200">
+                {page.children.map((childPage, index) => (
+                  <li>
+                    <a
+                      href={`${page.link}${childPage.anchor ? "#" : "/"}${childPage.link}`}
+                      aria-label={childPage.display}
+                    >
+                      {childPage.display}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+      })}
+    </div>
+  )
+}
+
+{
+  variant === "drawer" && (
+    <div class="drawer justify-end visible lg:hidden w-fit ml-4">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer" class="btn btn-ghost drawer-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-7 w-7"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
+        </label>
+      </div>
+      <div class="drawer-end drawer-side">
+        <label
+          for="my-drawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+        />
+        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          {AppConfig.pages.map((page) => (
+            <li>
+              <a href={`/${page.link}`}>{page.display}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
+}

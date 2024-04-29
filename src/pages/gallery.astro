@@ -1,0 +1,217 @@
+---
+import Hero from "../components/hero.astro";
+import Tiles from "../components/tiles.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Gallery" description="Take a look at some of our photos.">
+  <main>
+    <Hero
+      variant="auto"
+      title="Gallery"
+      description="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+    />
+
+    <!-- Gallery A -->
+    <section id="gallery-a" class="body-font bg-base-100">
+      <div class="container px-5 py-24 mx-auto flex flex-wrap w-2/3">
+        <div class="flex w-full mb-20 flex-wrap">
+          <h1
+            class="sm:text-3xl text-2xl font-medium lg:w-1/3 lg:mb-0 mb-4"
+          >
+            Gallery A
+          </h1>
+          <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+            gentrify, subway tile poke farm-to-table. Franzen you probably
+            haven't heard of them man bun deep jianbing selfies heirloom.
+          </p>
+        </div>
+        <div class="flex flex-wrap md:-m-2 -m-1">
+          <div class="flex flex-wrap flex-grow lg:flex-1">
+            <Tiles
+              images={[
+                {
+                  id: "1",
+                  title: "Image 1",
+                  alt: "1000 x 600",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/1000x600',
+                  width: 1000,
+                  height: 600,
+                  date: new Date(),
+                  eager: true
+                },
+                {
+                  id: "2",
+                  title: "Image 2",
+                  alt: "500 x 300",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/500x300',
+                  width: 500,
+                  height: 300,
+                  date: new Date(),
+                  eager: true
+                },
+                {
+                  id: "3",
+                  title: "Image 3",
+                  alt: "600 x 360",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/600x360',
+                  width: 600,
+                  height: 360,
+                  date: new Date(),
+                  eager: true
+                },
+              ]}
+            />
+          </div>
+          <div class="flex flex-wrap-reverse flex-grow lg:flex-1">
+            <Tiles
+              images={[
+                {
+                  id: "4",
+                  title: "Image 4",
+                  alt: "600 x 360",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/600x360',
+                  width: 600,
+                  height: 360,
+                  date: new Date(),
+                  eager: true
+                },
+                {
+                  id: "5",
+                  title: "Image 5",
+                  alt: "500 x 300",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/500x300',
+                  width: 500,
+                  height: 300,
+                  date: new Date(),
+                  eager: true
+                },
+                {
+                  id: "6",
+                  title: "Image 6",
+                  alt: "1000 x 600",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/1000x600',
+                  width: 1000,
+                  height: 600,
+                  date: new Date(),
+                  eager: true
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- Gallery B -->
+     <section id="gallery-b" class="body-font bg-base-200">
+      <div class="container px-5 py-24 mx-auto flex flex-wrap w-2/3">
+        <div class="flex w-full mb-20 flex-wrap">
+          <h1
+            class="sm:text-3xl text-2xl font-medium lg:w-1/3 lg:mb-0 mb-4"
+          >
+            Gallery B
+          </h1>
+          <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+            gentrify, subway tile poke farm-to-table. Franzen you probably
+            haven't heard of them man bun deep jianbing selfies heirloom.
+          </p>
+        </div>
+        <div class="flex flex-wrap md:-m-2 -m-1">
+          <div class="flex flex-wrap flex-grow lg:flex-1">
+            <Tiles
+              images={[
+                {
+                  id: "1",
+                  title: "Image 1",
+                  alt: "1000 x 600",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/1000x600',
+                  width: 1000,
+                  height: 600,
+                  date: new Date()
+                },
+                {
+                  id: "2",
+                  title: "Image 2",
+                  alt: "500 x 300",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/500x300',
+                  width: 500,
+                  height: 300,
+                  date: new Date()
+                },
+                {
+                  id: "3",
+                  title: "Image 3",
+                  alt: "600 x 360",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/600x360',
+                  width: 600,
+                  height: 360,
+                  date: new Date()
+                },
+              ]}
+            />
+          </div>
+          <div class="flex flex-wrap-reverse flex-grow lg:flex-1">
+            <Tiles
+              images={[
+                {
+                  id: "4",
+                  title: "Image 4",
+                  alt: "600 x 360",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/600x360',
+                  width: 600,
+                  height: 360,
+                  date: new Date()
+                },
+                {
+                  id: "5",
+                  title: "Image 5",
+                  alt: "500 x 300",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/500x300',
+                  width: 500,
+                  height: 300,
+                  date: new Date()
+                },
+                {
+                  id: "6",
+                  title: "Image 6",
+                  alt: "1000 x 600",
+                  caption:
+                    "Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.",
+                  src: 'https://dummyimage.com/1000x600',
+                  width: 1000,
+                  height: 600,
+                  date: new Date()
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

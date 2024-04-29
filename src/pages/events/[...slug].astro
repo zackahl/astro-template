@@ -1,0 +1,28 @@
+---
+import EventLayout from '../../layouts/EventLayout.astro';
+import { allEventsSorted, numEvents } from '../../utils/events';
+
+export async function getStaticPaths() {
+  return allEventsSorted.map((event, i) => ({
+    params: { slug: event.slug },
+    props: {
+      event,
+      prevEvent: // Previous event
+        i + 1 === numEvents // If the current event is the oldest
+          ? null
+          : allEventsSorted[i + 1],
+      nextEvent: // Next event
+        i === 0 // If the current event is the newest
+          ? null
+          : allEventsSorted[i - 1],
+    },
+  }));
+}
+
+const { event, prevEvent, nextEvent } = Astro.props;
+const { Content } = await event.render();
+---
+
+<EventLayout prevEvent={prevEvent} frontmatter={event.data} nextEvent={nextEvent}>
+  <Content />
+</EventLayout>

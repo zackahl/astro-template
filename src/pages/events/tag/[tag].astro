@@ -1,0 +1,42 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Event from "../../../components/event.astro";
+import Hero from "../../../components/hero.astro";
+import { allEventsSorted } from "../../../utils/events";
+
+export async function getStaticPaths() {
+  const uniqueTags = [...new Set(allEventsSorted.map((event) => event.data.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredEvents = allEventsSorted.filter((event) =>
+      event.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { events: filteredEvents },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { events } = Astro.props;
+---
+
+<Layout title={tag} description={`All events under the tag: ${tag}`}>
+  <Hero
+    variant="auto"
+    title={`#${tag}`}
+    caption="tag"
+  />
+
+  <section class="hero bg-base-200">
+		<div class="hero-content w-4/5">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -mx-4 -my-8">
+            {events.map((event, p_ix) =>
+              <Event index={p_ix} event={event}/>
+            )}
+          </div>
+        </div>
+	</section>
+</BaseLayout>

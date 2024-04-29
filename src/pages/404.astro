@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import PageNotFoundImage from "../assets/images/page-not-found.svg";
+---
+
+<Layout title="404 Not Found" description="404 Not Found.">
+  <main>
+    <section class="hero min-h-screen bg-base-100">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <Image
+            alt={'404 Not Found'}
+            src={PageNotFoundImage}
+          />
+          <h2 class="text-3xl font-medium mt-12">This page does not exist.</h2>
+          <p class="py-6">
+            {Astro.request.destination}
+          </p>
+          <a class="btn btn-primary" onclick="history.back()">Go Back</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,61 @@
+---
+import { ViewTransitions } from "astro:transitions";
+
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import ApplyTheme from "../components/theme-apply.astro";
+import { AppConfig } from "../utils/config";
+import { SEO } from "astro-seo";
+import ScrollToTop from "../components/scroll-to-top.astro";
+import GlobalStyles from "../styles/GlobalStyles.astro";
+
+interface Layout {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props as Layout;
+
+const makeTitle = title
+  ? AppConfig.site.name + " | " + title
+  : AppConfig.site.name;
+---
+
+<!doctype html>
+<html lang="en" class={AppConfig.theme.scrollbar ? "scrollbar scrollbar-thumb-primary scrollbar-track-base-200" : ""}>
+  <head>
+    <ApplyTheme />
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={makeTitle}
+      description={description}
+      canonical={Astro.url.href}
+      openGraph={{
+        basic: {
+          url: Astro.url.href,
+          type: "website",
+          title: AppConfig.site.name,
+          image: Astro.url.host + "/opengraph.jpg",
+        },
+        image: {
+          alt: AppConfig.site.name + " Homepage Screenshot",
+        },
+      }}
+    />
+    
+    <ViewTransitions />
+
+    <GlobalStyles />
+  </head>
+  <body>
+    <Header variant={AppConfig.layout.header.variant} sticky={AppConfig.layout.header.sticky} />
+    <slot />
+    <Footer variant={AppConfig.layout.footer.variant} />
+    {AppConfig.layout.scrollToTop && <ScrollToTop />}
+  </body>
+</html>

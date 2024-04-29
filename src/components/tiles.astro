@@ -1,0 +1,16 @@
+---
+import { type Lightbox } from "../types/common";
+import LightboxImage from "./lightbox.astro";
+
+interface Tile {
+  images: Lightbox[]
+}
+
+const { images } = Astro.props as Tile;
+---
+
+{images.map((img, ix) => 
+    <div class={`md:p-2 p-1 w-full ${ix % 3 === 2 ? 'lg:w-full' : 'lg:w-1/2'}`}>
+      <LightboxImage {...img}/>
+    </div>
+)}

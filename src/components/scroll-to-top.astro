@@ -1,0 +1,17 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<script is:inline>
+    window.onscroll = function() {
+        if ((window.innerHeight + window.scrollY + 100) >= document.body.offsetHeight) {
+           document.querySelector('#scroll-to-top')?.classList.add('hidden')
+        } else {
+            document.querySelector('#scroll-to-top')?.classList.remove('hidden')
+        }
+    };
+</script>
+
+<a id="scroll-to-top" href="#" class="btn btn-primary opacity-20 hover:opacity-100 transition-all btn-circle fixed bottom-5 right-5">
+    <Icon name={'mdi:arrow-up'} size={30} />
+</a>

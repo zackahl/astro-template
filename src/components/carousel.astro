@@ -1,0 +1,113 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import { findImage } from "../utils/images";
+
+interface Carousel {
+  items: string[];
+}
+
+const { items } = Astro.props as Carousel;
+---
+
+<script>
+  function prev() {
+    const activeSlide = document.querySelector(".carousel-slide.active");
+    const prevSlide = activeSlide?.previousElementSibling;
+
+    if (prevSlide) {
+      document.querySelector("#carousel-next")?.classList.remove("btn-disabled")
+      activeSlide?.classList.add(
+        "animate-fade-right",
+        "animate-reverse",
+        "animate-delay-[1000ms]",
+        "hidden"
+      );
+      activeSlide?.classList.remove("active");
+
+      prevSlide?.classList.remove(
+        "animate-fade-right",
+        "animate-reverse",
+        "animate-delay-[1000ms]",
+        "hidden"
+      );
+      prevSlide?.classList.add("active", "animate-fade-left");
+    } else {
+        document.querySelector("#carousel-prev")?.classList.add("btn-disabled")
+    }
+  }
+
+  function next() {
+    const activeSlide = document.querySelector(".carousel-slide.active");
+    const nextSlide = activeSlide?.nextElementSibling;
+
+    if (nextSlide) {
+      document.querySelector("#carousel-prev")?.classList.remove("btn-disabled")
+      activeSlide?.classList.add(
+        "animate-fade-left",
+        "animate-reverse",
+        "animate-delay-[1000ms]",
+        "hidden"
+      );
+      activeSlide?.classList.remove("active");
+
+      nextSlide?.classList.remove(
+        "animate-fade-left",
+        "animate-reverse",
+        "animate-delay-[1000ms]",
+        "hidden"
+      );
+      nextSlide?.classList.add("active", "animate-fade-right");
+    } else {
+        document.querySelector("#carousel-next")?.classList.add("btn-disabled")
+    }
+  }
+
+  function init() {
+    const prevSlideBtn = document.getElementById("carousel-prev");
+    const nextSlideBtn = document.getElementById("carousel-next");
+
+    prevSlideBtn?.addEventListener("click", prev);
+    nextSlideBtn?.addEventListener("click", next);
+  }
+
+  init();
+
+  document.addEventListener("astro:after-swap", init);
+</script>
+
+<div
+  id="carousel"
+  class="container text-center relative lg:w-1/2 mx-auto my-6"
+>
+  <div class="carousel-wrapper content-center">
+    {items.map((item, index) => {
+          return (
+            <div
+              id={"slide-" + index}
+              class={`carousel-slide ${index != 0 ? "hidden" : "active animate-ease-in-out inline-block max-w-80"}`}
+            >
+              <Image
+                src={findImage(item)}
+                alt={"slide-" + index}
+                width={600}
+                height={600}
+              />
+            </div>
+          );
+        })
+    }
+  </div>
+  {items.length > 1 && <div class="carousel-arrows">
+    <button
+      id="carousel-prev"
+      class="btn btn-primary btn-sm btn-circle absolute -left-12 top-1/2 opacity-20 hover:opacity-100 transition-all"
+      ><Icon name="mdi:arrow-left" size={30} /></button
+    >
+    <button
+      id="carousel-next"
+      class="btn btn-primary btn-sm btn-circle absolute -right-12 top-1/2 opacity-20 hover:opacity-100 transition-all"
+      ><Icon name="mdi:arrow-right" size={30} /></button
+    >
+  </div>}
+</div>
