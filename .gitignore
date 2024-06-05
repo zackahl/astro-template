@@ -1,6 +1,5 @@
 # build output
 dist/
-yarn.lock
 
 # generated types
 .astro/
